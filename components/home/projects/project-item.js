@@ -5,7 +5,7 @@ export default function ProjectItem({ data }) {
   const title = data.properties.이름.title[0].plain_text;
   const githubLink = data.properties.Github.url;
   const description = data.properties.Description.rich_text[0].plain_text;
-  const imageSrc = data.cover.file.url
+  //const imageSrc = data.cover.file.url
   const tags = data.properties.관련기술.multi_select
   const SiteLink = data.properties.URL.url
 
@@ -21,6 +21,7 @@ export default function ProjectItem({ data }) {
   return (
     <>
       <div className="border mt-4 rounded-md overflow-hidden">
+        <!--
         <Image
           className="overflow-hidden cursor-pointer border"
           src={imageSrc}
@@ -31,7 +32,7 @@ export default function ProjectItem({ data }) {
           objectFit="cover"
           quality={100}
         />
-
+        -->
       <div className="p-4 flex flex-col cards">
          <h1 className="text-2xl font-bold">{title}</h1>
           <h3 className="mt-4 text-sm leading-6">{description}</h3>
