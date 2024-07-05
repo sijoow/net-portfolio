@@ -9,7 +9,7 @@ export default function Hero(){
         <br className="hidden lg:inline-block"/>
       </h1>
       <p className="mb-8 leading-relaxed">
-        프론트 개발자 7년차 개발자 시대에 맞춰 <br/>발전하는 개발자가 되는것이 목표인
+        프론트 개발자 8년차 개발자 시대에 맞춰 <br/>발전하는 개발자가 되는것이 목표인
         프론트 앤드 개발자 입니다. 잘부탁드립니다.
       </p>
       <div className="flex justify-center">
