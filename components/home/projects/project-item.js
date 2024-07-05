@@ -21,18 +21,6 @@ export default function ProjectItem({ data }) {
   return (
     <>
       <div className="border mt-4 rounded-md overflow-hidden">
-        <!--
-        <Image
-          className="overflow-hidden cursor-pointer border"
-          src={imageSrc}
-          alt="cover image"
-          width="100%"
-          height="60%"
-          layout="responsive"
-          objectFit="cover"
-          quality={100}
-        />
-        -->
       <div className="p-4 flex flex-col cards">
          <h1 className="text-2xl font-bold">{title}</h1>
           <h3 className="mt-4 text-sm leading-6">{description}</h3>
