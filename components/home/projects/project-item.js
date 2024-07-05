@@ -1,20 +1,15 @@
 import Image from "next/image";
 
 export default function ProjectItem({ data }) {
-  const title = data.properties.이름?.title[0]?.plain_text || 'No Title';
+  const title = data.properties.이름?.title?.[0]?.plain_text || 'No Title';
   const githubLink = data.properties.Github?.url || '#';
-  const description = data.properties.Description?.rich_text[0]?.plain_text || 'No Description';
+  const description = data.properties.Description?.rich_text?.[0]?.plain_text || 'No Description';
   const imageSrc = data.cover?.file?.url || data.cover?.external?.url || null;
   const tags = data.properties.관련기술?.multi_select || [];
   const siteLink = data.properties.URL?.url || '#';
 
-  if (imageSrc) {
-    console.log(imageSrc);
-  } else {
-    console.error('Image URL not found');
-  }
-
-  console.log(tags);
+  console.log('imageSrc:', imageSrc);
+  console.log('tags:', tags);
 
   return (
     <>
@@ -31,7 +26,7 @@ export default function ProjectItem({ data }) {
             quality={100}
           />
         ) : (
-          <div className="overflow-hidden cursor-pointer border" style={{width: '100%', height: '60%', backgroundColor: '#ccc'}}>
+          <div className="overflow-hidden cursor-pointer border" style={{width: '100%', height: '400px', backgroundColor: '#ccc'}}>
             <p style={{textAlign: 'center', paddingTop: '30%'}}>No image available</p>
           </div>
         )}
