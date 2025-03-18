@@ -4,29 +4,29 @@ import Image from "next/image";
 const getTagClass = (tagName) => {
   const lowerTag = tagName.toLowerCase();
   if (lowerTag === "node") {
-    return "bg-green-200 dark:bg-green-700";
-  } else if (lowerTag === "Nextjs") {
-    return "bg-red-200 dark:bg-red-700";
-  }else if (lowerTag === "TaillwindCss") {
-    return "bg-amber-200 dark:bg-amber-700";
-  }else if (lowerTag === "ejs") {
-    return "bg-yellow-200 dark:bg-yellow-700";
-  }else if (lowerTag === "javascript") {
-    return "bg-lime-200 dark:bg-lime-700";
-  }else if (lowerTag === "php") {
-    return "bg-green-200 dark:bg-green-700";
-  }else if (lowerTag === "bootstrap") {
-    return "bg-teal-200 dark:bg-teal-700";
-  }else if (lowerTag === "cafe24") {
-    return "bg-blue-200 dark:bg-blue-700";
-  }else if (lowerTag === "css") {
-    return "bg-indigo-200 dark:bg-indigo-700";
-  }else if (lowerTag === "React") {
-    return "bg-gray-200 dark:bg-gray-700";
+    return "bg-green-300 dark:bg-green-800";
+  } else if (lowerTag === "nextjs") {
+    return "bg-red-300 dark:bg-red-800";
+  } else if (lowerTag === "taillwindcss") {
+    return "bg-cyan-300 dark:bg-cyan-800";
+  } else if (lowerTag === "ejs") {
+    return "bg-yellow-300 dark:bg-yellow-800";
+  } else if (lowerTag === "javascript") {
+    return "bg-lime-300 dark:bg-lime-800";
+  } else if (lowerTag === "php") {
+    return "bg-purple-300 dark:bg-purple-800";
+  } else if (lowerTag === "bootstrap") {
+    return "bg-teal-300 dark:bg-teal-800";
+  } else if (lowerTag === "cafe24") {
+    return "bg-blue-300 dark:bg-blue-800";
+  } else if (lowerTag === "css") {
+    return "bg-indigo-300 dark:bg-indigo-800";
+  } else if (lowerTag === "react") {
+    return "bg-gray-300 dark:bg-gray-800";
   }
-  
-  return "bg-sky-200 dark:bg-yellow-700";
+  return "bg-sky-300 dark:bg-sky-800";
 };
+
 
 export default function ProjectItem({ data }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -38,7 +38,7 @@ export default function ProjectItem({ data }) {
   const SiteLink = data.properties.URL.url;
 
   const openModal = (e) => {
-    // 카드 전체를 클릭할 경우 모달 오픈
+    // 카드 전체 클릭 시 모달 오픈
     e.preventDefault();
     setModalOpen(true);
   };
@@ -65,45 +65,54 @@ export default function ProjectItem({ data }) {
               className="cursor-pointer"
             />
           ) : (
-            <div className="absolute top-0 left-0 w-full h-full bg-gray-300 flex items-center justify-center">
-              <p>No image available</p>
+            <div
+              className="absolute top-0 left-0 w-full h-full flex items-center justify-center"
+              style={{ background: "#ddd" }}
+            >
+              <p className="text-gray-900 dark:text-black-600">
+                No image available
+              </p>
             </div>
           )}
         </div>
         {/* 콘텐츠 영역: flex-1로 남은 공간 채우기 */}
-        <div className="p-4 flex flex-col w-full flex-1">
-          <div className="w-full text-2l font-bold break-words">{title}</div>
+        <div className="p-4 flex flex-col w-full flex-1 text-gray-900 dark:text-black-600">
+          <div className="w-full text-2xl font-bold break-words">{title}</div>
           <div className="w-full mt-2 text-xs leading-5 break-words">
             {description}
           </div>
-          {/* 라이브 사이트 바로가기: 클릭 시 부모의 onClick과 동일하게 모달 열기 */}
-          <a
-            href={SiteLink}
-            onClick={(e) => {
-              e.stopPropagation();
-              openModal(e);
-            }}
-            className="w-full mt-2 text-sm break-words hover:underline"
-          >
-            라이브 사이트 바로가기
-          </a>
-          {/* 깃 바로가기: 새 창으로 열고 이벤트 전파 방지 */}
-          <a
-            href={githubLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="w-full mt-2 text-sm break-words hover:underline"
-          >
-            깃 바로가기
-          </a>
+          {/* SiteLink 값이 있는 경우에만 렌더링 */}
+          {SiteLink && (
+            <a
+              href={SiteLink}
+              onClick={(e) => {
+                e.stopPropagation();
+                openModal(e);
+              }}
+              className="w-full mt-2 text-sm break-words hover:underline dark:text-black dark:hover:text-black"
+            >
+              라이브 사이트 바로가기
+            </a>
+          )}
+          {/* githubLink 값이 있는 경우에만 렌더링 */}
+          {githubLink && (
+            <a
+              href={githubLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="w-full mt-2 text-sm break-words hover:underline dark:text-black dark:hover:text-black"
+            >
+              깃 바로가기
+            </a>
+          )}
           <div className="w-full flex flex-wrap items-start mt-2">
             {tags.map((aTag) => (
               <span
                 key={aTag.id}
                 className={`px-1 py-0.5 mr-2 mb-2 rounded-md text-xs ${getTagClass(
                   aTag.name
-                )}`}
+                )} text-gray-900 dark:text-black-600`}
               >
                 {aTag.name}
               </span>
@@ -119,7 +128,7 @@ export default function ProjectItem({ data }) {
             {/* 닫기 버튼 */}
             <button
               onClick={closeModal}
-              className="absolute top-2 right-2 bg-gray-200 hover:bg-gray-300 rounded-full p-2"
+              className="absolute top-2 right-2 bg-gray-200 hover:bg-gray-300 rounded-full p-2 text-gray-900 dark:text-black-600"
             >
               X
             </button>
