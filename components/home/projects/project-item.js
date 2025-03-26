@@ -36,6 +36,7 @@ export default function ProjectItem({ data }) {
   const imageSrc = data.cover?.file?.url || data.cover?.external?.url;
   const tags = data.properties.관련기술.multi_select;
   const SiteLink = data.properties.URL.url;
+  const [imgError, setImgError] = useState(false);
 
   const openModal = (e) => {
     // 카드 전체 클릭 시 모달 오픈
@@ -55,7 +56,7 @@ export default function ProjectItem({ data }) {
       >
         {/* 이미지 영역: 비율 유지 */}
         <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
-          {imageSrc ? (
+        {imageSrc && !imgError ? (
             <Image
               src={imageSrc}
               alt="cover image"
@@ -66,13 +67,13 @@ export default function ProjectItem({ data }) {
             />
           ) : (
             <div
-              className="absolute top-0 left-0 w-full h-full flex items-center justify-center"
-              style={{ background: "#ddd" }}
-            >
-              <p className="text-gray-900 dark:text-black-600">
-                No image available
-              </p>
-            </div>
+            className="absolute top-0 left-0 w-full h-full flex items-center justify-center"
+            style={{ background: "#ddd" }}
+          >
+            <p className="text-gray-900 dark:text-black-600">
+              No image available
+            </p>
+          </div>
           )}
         </div>
         {/* 콘텐츠 영역: flex-1로 남은 공간 채우기 */}
