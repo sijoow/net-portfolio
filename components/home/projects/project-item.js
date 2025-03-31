@@ -57,24 +57,25 @@ export default function ProjectItem({ data }) {
         {/* 이미지 영역: 비율 유지 */}
         <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
         {imageSrc && !imgError ? (
-            <Image
-              src={imageSrc}
-              alt="cover image"
-              layout="fill"
-              objectFit="cover"
-              quality={100}
-              className="cursor-pointer"
-            />
-          ) : (
-            <div
+          <Image
+            src={imageSrc}
+            alt="cover image"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+            className="cursor-pointer"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div
             className="absolute top-0 left-0 w-full h-full flex items-center justify-center"
-            style={{ background: "#ddd" }}
+            style={{ background: "#555" }}
           >
-            <p className="text-gray-900 dark:text-black-600">
+            <p className="text-white dark:text-white text-sm">
               No image available
             </p>
           </div>
-          )}
+        )}
         </div>
         {/* 콘텐츠 영역: flex-1로 남은 공간 채우기 */}
         <div className="p-4 flex flex-col w-full flex-1 text-gray-900 dark:text-black-600">
